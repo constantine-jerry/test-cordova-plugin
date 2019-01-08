@@ -299,8 +299,7 @@ export class HomePage {
 
 接下来, 我们打开 `Xcode` 工程 (`test-cordova/platforms/ios/MyApp.xcworkspace`), 在模拟器上运行, 在首页可以看到一个 `测试 cordova plugin` 的按钮, 点击后会弹出 `iOS` 原生 `Alert`, 2 秒后自动消失. 如图:
 
-![ios_implement_without_ionic_native.jpg](https://github.com/constantine-jerry/readme-pic/raw/master/images/test-cordova-plugin/ios_implement_without_ionic_native.jpg)@w=300
-
+<img width="50%" height="50%" src="https://github.com/constantine-jerry/readme-pic/raw/master/images/test-cordova-plugin/ios_implement_without_ionic_native.jpg"/>
 
 至此, 我们已经能够成功的利用 `Cordova` 插件来调用原生平台的功能了.
 
@@ -517,7 +516,7 @@ export class HomePage {
 
 然后用 `Xcode` 打开 `test-cordova/platforms/ios/MyApp.xcworkspace`, 在模拟器上运行, 我们可以看到跟 `第2章节` 一样的效果:
 
-![ios_implement_with_ionic_native.jpg](https://github.com/constantine-jerry/readme-pic/raw/master/images/test-cordova-plugin/ios_implement_with_ionic_native.jpg)@w=300
+<img width="50%" height="50%" src="https://github.com/constantine-jerry/readme-pic/raw/master/images/test-cordova-plugin/ios_implement_with_ionic_native.jpg"/>
 
 至此, 我们已经完成给 ionic 自定义一个 Cordova 插件的工作了. 🎉
 
