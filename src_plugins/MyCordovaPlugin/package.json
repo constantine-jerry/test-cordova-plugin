@@ -1,0 +1,19 @@
+{
+  "name": "MyCordovaPlugin",
+  "version": "0.0.1",
+  "description": "test",
+  "cordova": {
+    "id": "my-cordova-plugin",
+    "platforms": [
+      "android",
+      "ios"
+    ]
+  },
+  "keywords": [
+    "ecosystem:cordova",
+    "cordova-android",
+    "cordova-ios"
+  ],
+  "author": "Justin Liang",
+  "license": "ISC"
+}
