@@ -533,7 +533,16 @@ export class HomePage {
 
 笔者认为, 写一个 `Cordova` 插件是一件很繁琐的事情. 需要写 `JavaScript` 接口代码, 写各个平台的原生实现代码, 还需要写 `ionic native wrapper`. 这些工作很多都跟业务无关的, 而且这过程中还用到很多脚手架工具. 所以如果不是很必要, 尽量在 H5 上实现功能.
 
-#### 5. 参考文献
+Demo 地址: [https://github.com/constantine-jerry/test-cordova-plugin](https://github.com/constantine-jerry/test-cordova-plugin)
+
+#### 5. TODO
+
+- [ ] 直接可用的 `Demo`, `github` 上的项目还不能直接运行
+- [ ] 支持安卓平台
+- [X] 支持 iOS 平台
+- [ ] 更复杂的插件
+
+#### 6. 参考文献
 
 - [Cordova Docs](https://cordova.apache.org/docs/en/latest/guide/overview/index.html)
 - [Build your first Cordova plugin for Ionic Native](https://medium.com/@sangkhim/build-your-first-cordova-plugin-for-ionic-native-38d29a170145)
