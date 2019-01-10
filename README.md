@@ -306,8 +306,8 @@ export class HomePage {
 ```
 
 > 注意: 
-> 上面我们修改了 `MyCordovaPlugin.m`, 并执行了 `ionic cordova prepare ios` 命令, 笔者期望 `Xcode` 工程的 `MyCordovaPlugin.m` 也会修改, 但实际上是没有的. 我们暂时手动修改 `Xcode` 工程的 `MyCordovaPlugin.m`, 这样做比较麻烦, 后面再研究怎么解决.
-> (以笔者的环境, Xcode 工程 `MyCordovaPlugin.m` 的文件路径是: `test-cordova/platforms/ios/MyApp/Plugins/my-cordova-plugin/MyCordovaPlugin.m`)
+> 上面我们修改了 `MyCordovaPlugin.m`, 并执行了 `ionic cordova prepare ios` 命令, 本来期望 `Xcode` 工程的 `MyCordovaPlugin.m` 也会修改, 但实际上是没有的. 我们暂时手动修改 `Xcode` 工程的 `MyCordovaPlugin.m`, 这样做比较麻烦, 后面再研究怎么解决.
+> (以我的环境, Xcode 工程 `MyCordovaPlugin.m` 的文件路径是: `test-cordova/platforms/ios/MyApp/Plugins/my-cordova-plugin/MyCordovaPlugin.m`)
 
 接下来, 我们打开 `Xcode` 工程 (`test-cordova/platforms/ios/MyApp.xcworkspace`), 在模拟器上运行, 在首页可以看到一个 `测试 cordova plugin` 的按钮, 点击后会弹出 `iOS` 原生 `Alert`, 2 秒后自动消失. 如图:
 
@@ -542,7 +542,7 @@ export class HomePage {
 
 我们创建好 `ionic native wrapper` 后, 只是简单的 copy 到 `test-cordova/node_modules/@ionic-native` 文件夹下. 可以把 `ionic native wrapper` 的代码放到代码托管服务, 需要修改相应的 `package.json` 等配置文件, 想了解更多请自行查找相关文献.
 
-笔者认为, 写一个 `Cordova` 插件是一件很繁琐的事情. 需要写 `JavaScript` 接口代码, 写各个平台的原生实现代码, 还需要写 `ionic native wrapper`. 这些工作很多都跟业务无关的, 而且这过程中还用到很多脚手架工具. 所以如果不是很必要, 尽量在 H5 上实现功能.
+个人认为, 写一个 `Cordova` 插件是一件很繁琐的事情. 需要写 `JavaScript` 接口代码, 写各个平台的原生实现代码, 还需要写 `ionic native wrapper`. 这些工作很多都跟业务无关的, 而且这过程中还用到很多脚手架工具. 所以如果不是很必要, 尽量在 H5 上实现功能.
 
 Demo 地址: [https://github.com/constantine-jerry/test-cordova-plugin](https://github.com/constantine-jerry/test-cordova-plugin)
 
