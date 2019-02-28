@@ -562,17 +562,6 @@ Demo 地址: [https://github.com/constantine-jerry/test-cordova-plugin](https://
 - [X] 支持 iOS 平台
 - [ ] 更复杂的插件
 
-Demo 地址: [https://github.com/constantine-jerry/test-cordova-plugin](https://github.com/constantine-jerry/test-cordova-plugin)
-
-> 该教程是在 `macOS` 平台环境下调试的, `Windows` 的同学可以参照着做, 原理是一样的, 或者在 `Linux` 环境下调试.
-
-#### 6. TODO
-
-- [ ] 直接可用的 `Demo`, `github` 上的项目还不能直接运行
-- [ ] 支持安卓平台
-- [X] 支持 iOS 平台
-- [ ] 更复杂的插件
-
 #### 7. 参考文献
 
 - [Cordova Docs](https://cordova.apache.org/docs/en/latest/guide/overview/index.html)
