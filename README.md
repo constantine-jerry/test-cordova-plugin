@@ -1,13 +1,25 @@
 ### 如何给 `ionic` 自定义一个 `Cordova` 插件
 
-#### 0. 新建一个 `ionic` 测试项目
+#### 0. 什么是 `Cordova plugins`
+
+在我们准备创建自己的 `Cordova Plugin` 之前, 让我们先说一下什么是 `Cordova plugin`, 还有什么是 `Cordova`. 
+
+`Cordova` 是一个命令行工具的集合; 也是一个 `Plugin Bridge`, 通过这个 `Plugin Bridge` 可以创建 `Native App`. 这些 `Native App` 是建立在一个 `Web View` 上的, 通过 `JavaScript` 可以调用 `Native Code`. 当我们安装 `Cordova` 在我们的电脑上, 我们是安装了一个工具集, 帮助我们打包 `Web Content`, 装进 `Native App` 容器, 部署到设备或模拟器进行测试, 以及构建二进制可执行文件包发布到 `App Store`.
+
+在这个容器内部是一个相对较小的 `Bridge`, 它将我们所做的某些 `JavaScript` 调用传输到相应的 `native code` 中, 使我们的应用能够执行复杂的, 本机的活动 (native things), 而这些活动 (native things) 并没有融入到标准的 `Web APIs` 中.
+
+构建 `Gordova pugin` 意味着我们可以通过写一些 `JavaScript` 代码去调用 `Native Code` (`Obj-c/Swift`, `Java`, etc.), 并返回结果给 `JavaScript`.
+
+总而言之, 当我们想做一些原生的功能而 `Web API` 又做不到时, 我们就可以构建一个 `Cordava plugin`. 例如在 `iOS` 上访问 `HealthKit` 数据或者在 `Android` 上使用指纹识别.
+
+#### 1. 新建一个 `ionic` 测试项目
 
 ``` sh
 ➜  ionic start test-cordova tabs
 ➜  cd test-cordova
 ```
 
-#### 1. 新建一个 `Cordova` 插件
+#### 2. 新建一个 `Cordova` 插件
 
 为项目添加 `Android` 平台和 `iOS` 平台
 ``` sh
@@ -117,7 +129,7 @@ Is this OK? (yes)
 ➜  test-cordova git:(master) ✗ ionic cordova plugin add src_plugins/MyCordovaPlugin
 ```
 
-#### 2. 在 `ionic` 调用插件
+#### 3. 在 `ionic` 调用插件
 
 让我们看看 `plugman` 创建好的模板代码
 
@@ -299,12 +311,11 @@ export class HomePage {
 
 接下来, 我们打开 `Xcode` 工程 (`test-cordova/platforms/ios/MyApp.xcworkspace`), 在模拟器上运行, 在首页可以看到一个 `测试 cordova plugin` 的按钮, 点击后会弹出 `iOS` 原生 `Alert`, 2 秒后自动消失. 如图:
 
-![09cd1b4136684bf3c815bb407a6684ba.png](evernotecid://9C07A12A-5F12-42A7-8D83-CC594C6942FC/appyinxiangcom/361704/ENResource/p5380)@w=300
-
+<img width="50%" height="50%" src="https://github.com/constantine-jerry/readme-pic/raw/master/images/test-cordova-plugin/ios_implement_without_ionic_native.jpg"/>
 
 至此, 我们已经能够成功的利用 `Cordova` 插件来调用原生平台的功能了.
 
-### 3. 使用 `ionic native` 来封装 `Cordova` 插件
+### 4. 使用 `ionic native` 来封装 `Cordova` 插件
 
 虽然我们能够调用原生的功能了, 但是不够优雅. 目前在 `JavaScript` 端是这么调用插件接口的:
 
@@ -415,10 +426,17 @@ export class MyCordovaPlugin extends IonicNativePlugin {
 ➜  ionic-native git:(master) ✗ npm run build my-cordova-plugin
 ```
 
-然后我们可以看到 `ionic-native/dist/@ionic-native/my-cordova-plugin` 文件夹, 这就是编译生成的 `ionic native wrapper` 代码. 我们把该文件夹直接 `copy` 到 `test-cordova` 项目下的 `node_modules/@ionic-native` 文件夹下:
+然后我们可以看到 `ionic-native/dist/@ionic-native/my-cordova-plugin` 文件夹, 这就是编译生成的 `ionic native wrapper` 代码. 接着把 `my-cordova-plugin` 直接 `copy` 到 `test-cordova` 项目下的 `src_ionic_native_wrapper`(新建) 文件夹下. 
 
 ``` sh
-➜  ionic-native git:(master) ✗ cp -r dist/@ionic-native/my-cordova-plugin ~/dev/learn/ionic-angular/test-cordova/node_modules/@ionic-native
+➜  test-cordova git:(master) mkdir src_ionic_native_wrapper
+➜  ionic-native git:(master) ✗ cp -r dist/@ionic-native/my-cordova-plugin ~/dev/learn/ionic-angular/test-cordova/src_ionic_native_wrapper
+```
+
+运行命令安装 `wrapper` 包:
+
+``` sh
+➜  test-cordova git:(master) npm install src_ionic_native_wrapper/ygsoft-qrcode-scan
 ```
 
 现在, 我们可以使用 `ionic native wrapper` 的代码来调用我们的插件接口了.
@@ -517,11 +535,11 @@ export class HomePage {
 
 然后用 `Xcode` 打开 `test-cordova/platforms/ios/MyApp.xcworkspace`, 在模拟器上运行, 我们可以看到跟 `第2章节` 一样的效果:
 
-![39f8587d3e3913f463cfe5d042a1be45.png](evernotecid://9C07A12A-5F12-42A7-8D83-CC594C6942FC/appyinxiangcom/361704/ENResource/p5385)@w=300
+<img width="50%" height="50%" src="https://github.com/constantine-jerry/readme-pic/raw/master/images/test-cordova-plugin/ios_implement_with_ionic_native.jpg"/>
 
 至此, 我们已经完成给 ionic 自定义一个 Cordova 插件的工作了. 🎉
 
-#### 4. 补充
+#### 5. 补充
 
 上面的教程只是创建了一个简单的插件, 插件只有一个接口, 就是显示原生系统的 `Alert` 窗口.
 
@@ -533,10 +551,22 @@ export class HomePage {
 
 笔者认为, 写一个 `Cordova` 插件是一件很繁琐的事情. 需要写 `JavaScript` 接口代码, 写各个平台的原生实现代码, 还需要写 `ionic native wrapper`. 这些工作很多都跟业务无关的, 而且这过程中还用到很多脚手架工具. 所以如果不是很必要, 尽量在 H5 上实现功能.
 
-#### 5. 参考文献
+Demo 地址: [https://github.com/constantine-jerry/test-cordova-plugin](https://github.com/constantine-jerry/test-cordova-plugin)
+
+> 该教程是在 `macOS` 平台环境下调试的, `Windows` 的同学可以参照着做, 原理是一样的, 或者在 `Linux` 环境下调试.
+
+#### 6. TODO
+
+- [ ] 直接可用的 `Demo`, `github` 上的项目还不能直接运行
+- [ ] 支持安卓平台
+- [X] 支持 iOS 平台
+- [ ] 更复杂的插件
+
+#### 7. 参考文献
 
 - [Cordova Docs](https://cordova.apache.org/docs/en/latest/guide/overview/index.html)
 - [Build your first Cordova plugin for Ionic Native](https://medium.com/@sangkhim/build-your-first-cordova-plugin-for-ionic-native-38d29a170145)
 - [How to write Cordova Plugins](https://medium.com/ionic-and-the-mobile-web/how-to-write-cordova-plugins-864e40025f2)
 - [Ionic Native Developer Guide](https://github.com/ionic-team/ionic-native/blob/master/DEVELOPER.md)
 - [使用 Ionic Native 集成自定义插件](https://blog.csdn.net/u012125121/article/details/78997866)
+
