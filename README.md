@@ -436,7 +436,7 @@ export class MyCordovaPlugin extends IonicNativePlugin {
 运行命令安装 `wrapper` 包:
 
 ``` sh
-➜  test-cordova git:(master) npm install src_ionic_native_wrapper/ygsoft-qrcode-scan
+➜  test-cordova git:(master) npm install src_ionic_native_wrapper/my-cordova-plugin
 ```
 
 现在, 我们可以使用 `ionic native wrapper` 的代码来调用我们的插件接口了.
